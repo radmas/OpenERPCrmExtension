@@ -31,7 +31,8 @@
         
     """,
     "init_xml": [],
-    'update_xml': ['crm_case_categ_ext_view.xml'],
+    'update_xml': ['crm_case_categ_ext_view.xml',
+                   'crm_lead_view_ext.xml'],
     'demo_xml': [],
     'installable': True,
     'active': False,
