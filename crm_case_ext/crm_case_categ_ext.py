@@ -27,6 +27,18 @@ class crm_case_categ(osv.osv):
     
     _name = 'crm.case.categ'
     _inherit = 'crm.case.categ'
+
+    def name_get(self, cr, uid, ids, context=None):
+        if not len(ids):
+            return []
+        reads = self.read(cr, uid, ids, ['name','parent_id'], context=context)
+        res = []
+        for record in reads:
+            name = record['name']
+            if record['parent_id']:
+                name = record['parent_id'][1]+' / '+name
+            res.append((record['id'], name))
+        return res
     
     _columns = {'parent_id': fields.many2one('crm.case.categ', 'Parent'),
                 'child_ids': fields.one2many('crm.case.categ', 'parent_id', 'Child Teams'),
